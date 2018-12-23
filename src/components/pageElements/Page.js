@@ -5,6 +5,7 @@ import Styles from '../../assets/styles';
 import Header from './Header';
 import Footer from './Footer';
 import Gallery from './Gallery';
+import GalleryContainer from '../containers/GalleryContainer';
 import {  StyleRoot } from 'radium';
 
 
@@ -15,6 +16,7 @@ class Page extends Component {
         <div style={localStyles.container}>
           <Header/>
           <Gallery/>
+          <GalleryContainer/>
           <Footer/>
         </div>
       </StyleRoot>

@@ -1,9 +1,17 @@
 import React from 'react';
-import Styles from '../constants/localStyles';
+import Styles from '../../assets/styles';
 import Radium from 'radium';
 
 
-class Dummy extends React.Component {
+class dummy extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      
+    };
+  }
+
+
   render() {
     return(
       <div style={localStyles.container}>
@@ -21,12 +29,12 @@ const localStyles = {
   }
 };
 
-export default Radium(Dummy);
+export default Radium(dummy);
 
 //------
 
 import React from 'react';
-import Styles from '../../assets/localStyles';
+import Styles from '../../assets/styles';
 import Radium from 'radium';
 
 
