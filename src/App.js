@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
+import Page from './components/pageElements/Page';
+
+
 import './App.css';
+
 
 class App extends Component {
   render() {
     return (
-      <div>
-        'Home Page'
-      </div>
+      <>
+        <Page/>
+      </>
     );
   }
 }
 
-export default App;
+export default Radium(App);
