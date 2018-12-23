@@ -3,7 +3,9 @@ import Styles from '../assets/styles';
 import Radium from 'radium';
 
 const CHAR_LENGTH = 100;
-const CARD_SIZE_TO_TEXT_PROPORTION = 3;
+const CARD_SIZE_TO_TEXT_PROPORTION = 2.3;
+const CARD_SIZE_TO_TITLE_PROPORTION = 10;
+
 
 class Card extends React.Component {
 
@@ -11,13 +13,24 @@ class Card extends React.Component {
     const { card, height, width } = this.props;
 
     const cardStyle = [localStyles.container];
-    
-    let lengthOfText = CHAR_LENGTH;
+
+    let lengthOfDescription = CHAR_LENGTH;
+    let lengthOfTitle = CHAR_LENGTH;
 
     if (height) cardStyle.push({height: height});
     if (width) {
       cardStyle.push({width: width}) 
-      lengthOfText = width /CARD_SIZE_TO_TEXT_PROPORTION;
+      lengthOfDescription = width /CARD_SIZE_TO_TEXT_PROPORTION;
+      lengthOfTitle = width /CARD_SIZE_TO_TITLE_PROPORTION;
+    }
+
+    
+    let title = `${card.name} - ${card.address1}`;
+    let description = `${card.listing_text.substring(0, lengthOfDescription)}...`;
+    let details = `${card.city}, ${card.postcode}`;
+
+    if (title.length > lengthOfTitle) {
+      title = title.substring(0, lengthOfTitle) + '...';
     }
   
     return(
@@ -28,9 +41,9 @@ class Card extends React.Component {
         onClick={() => {alert('mouse is left')}} 
         onMouseOver={() => {alert('mouse is left')}}
       >
-        <h2 style={localStyles.header}>{`${card.name} - ${card.address1}`}</h2>
-        <h4 style={localStyles.texts}>{`${card.listing_text.substring(0, lengthOfText)}...`}</h4>
-        <h4 style={localStyles.texts}>{`${card.city}, ${card.postcode}`}</h4>
+        <h2 style={localStyles.header}>{title}</h2>
+        <h4 style={localStyles.texts}>{description}</h4>
+        <h4 style={localStyles.texts}>{details}</h4>
       </div>
     )
     

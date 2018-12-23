@@ -20,7 +20,7 @@ class Gallery extends React.Component {
         <Card
           card={DUMMY_OBJ}
           height={200}
-          width={400}
+          width={600}
         />
       </div>
     )
