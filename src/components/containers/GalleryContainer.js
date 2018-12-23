@@ -3,6 +3,8 @@ import Styles from '../../assets/styles';
 import Radium from 'radium';
 import axios from 'axios';
 
+
+
 const VENUES_URL = 'https://venue-lister.herokuapp.com/venues';
 
 class GalleryContainer extends React.Component {
