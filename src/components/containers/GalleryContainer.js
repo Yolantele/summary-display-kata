@@ -2,7 +2,7 @@ import React from 'react';
 import Styles from '../../assets/styles';
 import Radium from 'radium';
 import axios from 'axios';
-
+import Gallery from '../pageElements/Gallery'
 
 
 const VENUES_URL = 'https://venue-lister.herokuapp.com/venues';

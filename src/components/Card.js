@@ -4,7 +4,7 @@ import Radium from 'radium';
 
 const CHAR_LENGTH = 100;
 const CARD_SIZE_TO_TEXT_PROPORTION = 2.3;
-const CARD_SIZE_TO_TITLE_PROPORTION = 10;
+const CARD_SIZE_TO_TITLE_PROPORTION = 9;
 
 
 class Card extends React.Component {
@@ -79,14 +79,6 @@ const localStyles = {
     paddingTop: 5,
     paddingBottom: 5,
     opacity: 0.6
-  }, 
-  texts:{
-    fontFamily: Styles.font,
-    fontWeight: '100',
-    margin: 0, 
-    paddingTop: 5,
-    paddingBottom: 5,
-    opacity: 0.8
   }
 };
 
