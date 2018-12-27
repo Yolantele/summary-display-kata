@@ -8,26 +8,55 @@ class Gallery extends React.Component {
   constructor() {
     super();
     this.state = {
-      slide: 1
-      
+      slide: 0
     };
   }
+
   onNextSlide(){
-    alert("on slide " + this.state.slide)
+    if (this.state.slide <= 3){
+      this.setState({
+        slide: this.state.slide +=1
+      })
+    }
+  }
+
+  onPrevSlide(){
+    if (this.state.slide >= 1){
+      this.setState({
+        slide: this.state.slide -=1
+      })
+    }
+  }
+
+  onLimitGallery(content, index, contentLength=10){
+    let startOfMember;
+    let endOfMember;
+    if (index === 0) {
+      startOfMember = 0;
+      endOfMember = contentLength;
+    }
+    else {
+      startOfMember = index * contentLength - 1; 
+      endOfMember = (index * contentLength + contentLength) - 1;
+    }
+    return content.slice(startOfMember, endOfMember)
   }
 
   render () {
-
     const { height, galleryContent } = this.props;
+
+    let limitedGallery = this.onLimitGallery(galleryContent, this.state.slide);
+    
 
     return(
       <div style={localStyles.container}>
         <Grid
-          galleryContent={galleryContent}
+          galleryContent={limitedGallery}
           height={height}
         />
         <Controlls 
-          buttonClicked={(evt) => {this.onNextSlide(evt)}}
+          rightClick={() => {this.onNextSlide()}}
+          leftClick={() => {this.onPrevSlide()}}
         />
       </div>
     )

@@ -4,19 +4,19 @@ import Radium from 'radium';
 
 const Controlls = (props) => {
 
-  let { buttonClicked } = props
+  let { rightClick, leftClick } = props;
    
   return(
     <div style={localStyles.container}>
       <div 
         style={localStyles.button}
-        onClick={(evt) => {buttonClicked(evt)}}
+        onClick={() => {leftClick()}}
       >
         <img src={require('../assets/images/left.png')} alt='left'/>
       </div>
       <div 
         style={localStyles.button}
-        onClick={(evt) => {buttonClicked(evt)}}
+        onClick={() => {rightClick()}}
       >
         <img src={require('../assets/images/right.png')} alt='right'/>
       </div>
