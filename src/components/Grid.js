@@ -1,55 +1,60 @@
 import React from 'react';
-import Styles from '../assets/styles';
 import Radium from 'radium';
+import Card from './Card';
 import { 
   Container, 
   Row, 
   Col, 
-  Visible, 
-  Hidden,
   ScreenClassRender,
   setConfiguration
 } from 'react-grid-system';
+import Errors from './designed/Errors';
 
-setConfiguration({ defaultScreenClass: 'md', gridColumns: 10});
+setConfiguration({ defaultScreenClass: 'md', gridColumns: 3});
 
 const Grid = (props) => {
 
-  const { obj1, height } = props;
-  let rowStyle = [localStyles.row];
+  let returnCard = (cardObject) => {
+    return (
+      <Card
+        card={cardObject}
+      />
+    )
+  }
 
-  if ( height ) rowStyle.push(height);
+  const { galleryContent, height } = props;
+  // let rowStyle = [localStyles.row];
+  let content
+  if (galleryContent) content = galleryContent;
+  else content = <Errors />
+  // if ( height ) rowStyle.push(height);
+
+
+
    
   return(
-    // <div style={localStyles.container}>
-    <ScreenClassRender style={localStyles.container} render={screenClass => (
-    <div style={{ width: 1500, padding: 50}}>
-      <p style={{ fontSize: ['lg', 'xl'].includes(screenClass) ? '8rem' : '4rem' }} >
-        {/* Screen class: {screenClass} */}
-      </p>
+    <div style={localStyles.container}>
       <Container fluid>
-        <Row debug style={rowStyle}>
-          <Col debug>{obj1}</Col>
-          <Col debug>2 Pic</Col>
-          <Col debug>3 Pic</Col>
+        <Row debug>
+          <Col debug>{returnCard(content[0])}</Col>
+          <Col debug>{returnCard(content[1])}</Col>
         </Row>
         <br />
         <Row debug>
-          <Col debug>1 Pic</Col>
-          <Col debug>2 Pic</Col>
-          <Col debug>3 Pic</Col>
-          <Col debug>4 Pic</Col>
+          <Col debug>{returnCard(content[2])}</Col>
+          <Col debug>{returnCard(content[3])}</Col>
+          <Col debug>{returnCard(content[4])}</Col>
+          <Col debug>{returnCard(content[5])}</Col>
         </Row>
         <br />
         <Row debug>
-          <Col debug>1 of 4</Col>
-          <Col debug>2 of 4</Col>
-          <Col debug>3 of 4</Col>
-          <Col debug>4 of 4</Col>
+          <Col debug>{returnCard(content[6])}</Col>
+          <Col debug>{returnCard(content[7])}</Col>
+          <Col debug>{returnCard(content[8])}</Col>
+          <Col debug>{returnCard(content[9])}</Col>
         </Row>
       </Container>
     </div>
-    )} />
   )
   
 }
@@ -57,12 +62,7 @@ const Grid = (props) => {
 const localStyles = {
   container: { 
     display: 'flex',
-  },
-  row: {
-    height: 300
-  },
-  column:{
-    width: 300,
+    margin:20
   }
 };
 

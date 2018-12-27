@@ -4,7 +4,6 @@ import Radium from 'radium';
 import Styles from '../../assets/styles';
 import Header from './Header';
 import Footer from './Footer';
-import Gallery from './Gallery';
 import GalleryContainer from '../containers/GalleryContainer';
 import {  StyleRoot } from 'radium';
 
@@ -15,7 +14,6 @@ class Page extends Component {
       <StyleRoot style={localStyles.mainContainer}>
         <div style={localStyles.container}>
           <Header/>
-          <Gallery/>
           <GalleryContainer/>
           <Footer/>
         </div>
