@@ -3,8 +3,8 @@ import Styles from '../assets/styles';
 import Radium from 'radium';
 
 const CHAR_LENGTH = 100;
-const CARD_SIZE_TO_TEXT_PROPORTION = 2.5;
-const CARD_SIZE_TO_TITLE_PROPORTION = 7;
+const CARD_SIZE_TO_TEXT_PROPORTION = 3;
+const CARD_SIZE_TO_TITLE_PROPORTION = 6;
 const RATIO = 7.9;
 
 class Card extends React.Component {

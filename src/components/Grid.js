@@ -5,18 +5,13 @@ import {
   Container, 
   Row, 
   Col, 
-  ScreenClassRender,
-  setConfiguration
 } from 'react-grid-system';
 import Errors from './designed/Errors';
 import withWidth from './higher-order-comp/withWidth';
 
-const GRID_PADDING = 30;
 const RATIO = 8;
 const MAX_CARD_IN_GRID_WIDTH = 250;
 const MAX_CARD_IN_GRID_HEIGHT = 180;
-
-setConfiguration({ defaultScreenClass: 'md', gridColumns: 6});
 
 const Grid = (props) => {
 
@@ -46,7 +41,7 @@ const Grid = (props) => {
 
   if ( height ) rowStyle.push(height);
 
-  
+
    
   return(
     <div style={containerStyle}>

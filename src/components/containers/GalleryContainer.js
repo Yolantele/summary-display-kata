@@ -2,7 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 import axios from 'axios';
 import Gallery from '../pageElements/Gallery';
-import Styles from '../../assets/styles';
 import Loader from '../designed/Loader';
 
 

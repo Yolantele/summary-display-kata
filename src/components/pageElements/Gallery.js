@@ -8,22 +8,36 @@ class Gallery extends React.Component {
   constructor() {
     super();
     this.state = {
-      slide: 0
+      totalSlides: 5,
+      slide: 0,
     };
   }
 
+  onDetermineSlideCount(content, contentLength=10){
+    return (content.length / contentLength) - 1 ;
+    
+  }
+
+  componentWillMount(){
+    this.setState({
+      totalSlides: this.onDetermineSlideCount(this.props.galleryContent)
+    });
+  }
+
   onNextSlide(){
-    if (this.state.slide <= 3){
+    let { slide, totalSlides } = this.state;
+
+    if (slide < totalSlides){
       this.setState({
-        slide: this.state.slide +=1
+        slide: slide +1
       })
     }
   }
 
   onPrevSlide(){
-    if (this.state.slide >= 1){
+    if (this.state.slide > 0){
       this.setState({
-        slide: this.state.slide -=1
+        slide: this.state.slide -1
       })
     }
   }
