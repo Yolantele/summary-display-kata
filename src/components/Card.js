@@ -4,7 +4,7 @@ import Radium from 'radium';
 
 const CHAR_LENGTH = 100;
 const CARD_SIZE_TO_TEXT_PROPORTION = 2.3;
-const CARD_SIZE_TO_TITLE_PROPORTION = 9;
+const CARD_SIZE_TO_TITLE_PROPORTION = 6;
 
 
 class Card extends React.Component {
@@ -15,12 +15,14 @@ class Card extends React.Component {
     const cardStyle = [localStyles.container];
 
     let lengthOfDescription = CHAR_LENGTH;
-    let lengthOfTitle = CHAR_LENGTH / 4 ;
+    let lengthOfTitle = CHAR_LENGTH / 2 ;
 
     if (height) cardStyle.push({height: height});
 
     if (width) {
-      cardStyle.push({width: width}) 
+      let cardHeight = 120 ;
+      if (width - 50 > cardHeight ) cardHeight = width - 50 
+      cardStyle.push({ width: width, height: cardHeight }) 
       lengthOfDescription = width /CARD_SIZE_TO_TEXT_PROPORTION;
       lengthOfTitle = width /CARD_SIZE_TO_TITLE_PROPORTION;
     }
@@ -55,7 +57,7 @@ const localStyles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     cursor: 'pointer',
     backgroundColor: Styles.colours.white,
     padding: 40,
