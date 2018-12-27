@@ -3,14 +3,14 @@ import Styles from '../assets/styles';
 import Radium from 'radium';
 
 const CHAR_LENGTH = 100;
-const CARD_SIZE_TO_TEXT_PROPORTION = 2.3;
-const CARD_SIZE_TO_TITLE_PROPORTION = 6;
-
+const CARD_SIZE_TO_TEXT_PROPORTION = 2.5;
+const CARD_SIZE_TO_TITLE_PROPORTION = 7;
+const RATIO = 7.9;
 
 class Card extends React.Component {
 
   render () {
-    const { card, height, width } = this.props;
+    const { card, height, width, screenWidth } = this.props;
 
     const cardStyle = [localStyles.container];
 
@@ -19,13 +19,16 @@ class Card extends React.Component {
 
     if (height) cardStyle.push({height: height});
 
-    if (width) {
-      let cardHeight = 120 ;
-      if (width - 50 > cardHeight ) cardHeight = width - 50 
-      cardStyle.push({ width: width, height: cardHeight }) 
-      lengthOfDescription = width /CARD_SIZE_TO_TEXT_PROPORTION;
-      lengthOfTitle = width /CARD_SIZE_TO_TITLE_PROPORTION;
+    if (width || screenWidth) {
+      let setWidth;
+      if (screenWidth) setWidth = screenWidth / RATIO;
+      else setWidth = width;
+
+      lengthOfDescription = setWidth /CARD_SIZE_TO_TEXT_PROPORTION;
+      lengthOfTitle = setWidth /CARD_SIZE_TO_TITLE_PROPORTION;
     }
+
+    
     
     let title = `${card.name} - ${card.address1}`;
     let description = `${card.listing_text}`;
@@ -60,11 +63,10 @@ const localStyles = {
     justifyContent: 'center',
     cursor: 'pointer',
     backgroundColor: Styles.colours.white,
-    padding: 40,
+    padding: 35,
     margin: 5, 
     borderRadius: 15,
     boxShadow: '2px 2px 50px lightgray',
-    width: 230,
   },
   header:{
     fontFamily: Styles.font,

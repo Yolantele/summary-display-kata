@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 
-const SMALL_WIDTH = 450 ;
-// const REDUCE_IN_PROPORTION = 2.5;
+const SMALL_WIDTH = 500 ;
 const withWidth = (MyComponent) => {
 
 

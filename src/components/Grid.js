@@ -11,10 +11,12 @@ import {
 import Errors from './designed/Errors';
 import withWidth from './higher-order-comp/withWidth';
 
-const GRID_PADDING = 50;
-const CARD_TO_SCREEN_RATIO = 4
+const GRID_PADDING = 30;
+const RATIO = 8;
 const MAX_CARD_IN_GRID_WIDTH = 250;
-// setConfiguration({ defaultScreenClass: 'md', gridColumns: 3});
+const MAX_CARD_IN_GRID_HEIGHT = 180;
+
+setConfiguration({ defaultScreenClass: 'md', gridColumns: 6});
 
 const Grid = (props) => {
 
@@ -22,11 +24,16 @@ const Grid = (props) => {
 
   const returnCard = (cardObject) => {
     let maxWidth = MAX_CARD_IN_GRID_WIDTH;
-    let cardWidth = screenWidth / CARD_TO_SCREEN_RATIO;
+    let maxHeight = MAX_CARD_IN_GRID_HEIGHT;
+    let cardWidth = screenWidth / RATIO;
+    let cardHeight = screenWidth / RATIO - 150;
     return (
       <Card
         card={cardObject}
         width={cardWidth > maxWidth ?  maxWidth : cardWidth}
+        height={cardHeight < maxHeight ? maxHeight : cardHeight}
+        // height={200}
+        screenWidth={screenWidth}
       />
     )
   }
@@ -35,38 +42,32 @@ const Grid = (props) => {
   let rowStyle = [localStyles.row];
   let content
 
-  if (screenWidth) {
-    containerStyle.push({width: screenWidth - GRID_PADDING})
-  }
+  // if (screenWidth) {
+  //   containerStyle.push({width: screenWidth - GRID_PADDING})
+  // }
 
   if (galleryContent) content = galleryContent;
   else content = <Errors />
 
   if ( height ) rowStyle.push(height);
 
-
-
    
   return(
     <div style={containerStyle}>
-      <Container fluid>
-        <Row debug>
-          <Col debug>{returnCard(content[0])}</Col>
-          <Col debug>{returnCard(content[1])}</Col>
+      <Container fluid style={localStyles.row}>
+        <Row style={localStyles.row}>
+          <Col>{returnCard(content[0])}</Col>
+          <Col>{returnCard(content[1])}</Col>
+          <Col>{returnCard(content[2])}</Col>
+          <Col>{returnCard(content[3])}</Col>
+          <Col>{returnCard(content[4])}</Col>
         </Row>
-        <br />
-        <Row debug>
-          <Col debug>{returnCard(content[2])}</Col>
-          <Col debug>{returnCard(content[3])}</Col>
-          <Col debug>{returnCard(content[4])}</Col>
-          <Col debug>{returnCard(content[5])}</Col>
-        </Row>
-        <br />
-        <Row debug>
-          <Col debug>{returnCard(content[6])}</Col>
-          <Col debug>{returnCard(content[7])}</Col>
-          <Col debug>{returnCard(content[8])}</Col>
-          <Col debug>{returnCard(content[9])}</Col>
+        <Row style={localStyles.row}>
+          <Col>{returnCard(content[5])}</Col>
+          <Col>{returnCard(content[6])}</Col>
+          <Col>{returnCard(content[7])}</Col>
+          <Col>{returnCard(content[8])}</Col>
+          <Col>{returnCard(content[9])}</Col>
         </Row>
       </Container>
     </div>
@@ -77,13 +78,13 @@ const Grid = (props) => {
 const localStyles = {
   container: { 
     display: 'flex',
-    justifyContent: 'center',
+    // justifyContent: 'flex-start',
     margin: 20
   },
   row: {
-
+    paddingBottom: 20
   }
 };
 
   
-export default withWidth( Radium(Grid) );
+export default withWidth(Radium(Grid));

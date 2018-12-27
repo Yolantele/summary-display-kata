@@ -7,9 +7,7 @@ import Grid from '../Grid';
 class Gallery extends React.Component {
 
   render () {
-    console.log('INSIDE THEGALLERY ---->');
     const { height, galleryContent } = this.props;
-    console.log('-----> galleryContent', galleryContent);
 
     return(
       <div style={localStyles.container}>
@@ -17,6 +15,7 @@ class Gallery extends React.Component {
           galleryContent={galleryContent}
           height={height}
         />
+        <div>Controll pannel for grid</div>
       </div>
     )
   }
@@ -26,9 +25,10 @@ class Gallery extends React.Component {
 const localStyles = {
   container: { 
     display: 'flex',
-    justifyContnt: 'space-around',
+    flexDirection: 'column',
+    justifyContnt: 'space-between',
     alignItems: 'center',
-    height: 1000,
+    height: 900,
     backgroundColor: Styles.colours.offWhite
   },
 };
