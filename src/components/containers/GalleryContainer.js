@@ -1,46 +1,64 @@
 import React from 'react';
-import Styles from '../../assets/styles';
 import Radium from 'radium';
 import axios from 'axios';
-import Gallery from '../pageElements/Gallery'
+import Gallery from '../pageElements/Gallery';
+import VenueData from '../../assets/venueData';
+import Styles from '../../assets/styles';
+import Loader from '../designed/Loader';
 
 
 const VENUES_URL = 'https://venue-lister.herokuapp.com/venues';
 
+
 class GalleryContainer extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      venueData: null
+      isLoaded: false,
+      venueData: [], 
+      error: null
     };
   }
 
   componentWillMount() {
-    this.getVenueData();
+    this.setVenueData();
+  }
+  
+  setVenueData = async () => {
+    let data = await this.getVenueData();
+    this.setState({
+      venueData: data,
+      isLoaded: true
+    })
   }
 
-  getVenueData = () => {
-    const params = {
-      url: VENUES_URL,
-      method: 'get',
+  getVenueData () {
+    try {
+      const params = {
+        url: VENUES_URL,
+        method: 'get',
+      }
+      return axios(params)
+        .then(res => res.data)
+        .catch (err => console.log('error is -------> ', err));
     }
-
-    axios(params)
-      .then(res => {
-        console.log('---->venues data', res.data)
-        this.setState({
-          venueData: res.data,
-        })
-      })
-      .catch(err => {
-        console.log("err ------->", err);
-      })
+    catch (err) {
+      console.log('error is ----->', err);
+    }
   }
 
 
   render() {
+    const { isLoaded, venueData } = this.state;
+
+    let galleryContent;
+
+    if (isLoaded) galleryContent = (<Gallery galleryContent={venueData}/>)
+    else galleryContent = <Loader/>
+
     return(
       <div style={localStyles.container}>
+        {galleryContent}
       </div>
     );
   }
@@ -50,9 +68,7 @@ class GalleryContainer extends React.Component {
 const localStyles = {
   container: { 
     display: 'flex',
-    flexDirection: 'row',
-    cursor: 'pointer',
-  }
+  },
 };
 
 export default Radium(GalleryContainer);
