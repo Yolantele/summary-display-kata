@@ -32,7 +32,6 @@ const Grid = (props) => {
         card={cardObject}
         width={cardWidth > maxWidth ?  maxWidth : cardWidth}
         height={cardHeight < maxHeight ? maxHeight : cardHeight}
-        // height={200}
         screenWidth={screenWidth}
       />
     )
@@ -42,15 +41,12 @@ const Grid = (props) => {
   let rowStyle = [localStyles.row];
   let content
 
-  // if (screenWidth) {
-  //   containerStyle.push({width: screenWidth - GRID_PADDING})
-  // }
-
   if (galleryContent) content = galleryContent;
   else content = <Errors />
 
   if ( height ) rowStyle.push(height);
 
+  
    
   return(
     <div style={containerStyle}>

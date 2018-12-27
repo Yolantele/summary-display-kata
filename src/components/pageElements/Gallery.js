@@ -2,11 +2,22 @@ import React from 'react';
 import Styles from '../../assets/styles';
 import Radium from 'radium';
 import Grid from '../Grid';
-
+import Controlls from '../Controlls';
 
 class Gallery extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      slide: 1
+      
+    };
+  }
+  onNextSlide(){
+    alert("on slide " + this.state.slide)
+  }
 
   render () {
+
     const { height, galleryContent } = this.props;
 
     return(
@@ -15,7 +26,9 @@ class Gallery extends React.Component {
           galleryContent={galleryContent}
           height={height}
         />
-        <div>Controll pannel for grid</div>
+        <Controlls 
+          buttonClicked={(evt) => {this.onNextSlide(evt)}}
+        />
       </div>
     )
   }

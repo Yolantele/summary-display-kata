@@ -44,8 +44,7 @@ class Card extends React.Component {
         style={cardStyle} 
         alt={card.id} 
         key={card.id}
-        onClick={() => {alert('mouse is left')}} 
-        onMouseOver={() => {}}
+        onClick={() => {alert(card.listing_text)}} 
       >
         <h3 style={localStyles.header}>{title}</h3>
         <h5 style={localStyles.texts}>{description}</h5>
